@@ -9,15 +9,30 @@ $(() => {
   });
 
   const socket = io();
+  const IAM = { token: null };
+  socket.on('token', data => {
+    IAM.token = data.token;
+  });
+
   $('form').submit(e => {
     e.preventDefault();
-    socket.emit('msg', $('#m').val());
+
+    socket.emit('post', {
+      msg: $('#m').val(),
+      token: IAM.token,
+    });
+
     $('#m').val('');
     $('button').prop('disabled', true)
     return false;
   });
 
-  socket.on('msg', msg => {
-    $('#messages').append($('<li>').text(msg));
+  socket.on('msg', res => {
+    console.log(res);
+    if (res.token === IAM.token) {
+      $('#messages').append($('<li class="mine">').text(res.msg));
+    } else {
+      $('#messages').append($('<li class="others">').text(res.msg));
+    }
   });
 });

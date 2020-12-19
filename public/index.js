@@ -28,7 +28,6 @@ $(() => {
   });
 
   socket.on('msg', res => {
-    console.log(res);
     if (res.token === IAM.token) {
       $('#messages').append($('<li class="mine">').text(res.msg));
     } else {

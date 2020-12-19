@@ -16,7 +16,7 @@ io.on('connection', socket => {
 
   (() => {
     const token = makeToken(socket.id);
-    io.to(socket.id).emit('token', { token: token, iv: iv });
+    io.to(socket.id).emit('token', { token: token });
   })();
 
   socket.on('post', post => {

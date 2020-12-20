@@ -4,7 +4,7 @@ $(() => {
     if (text === null) {
       $('button').prop('disabled', true);
     } else {
-      $('button').prop('disabled', false)
+      $('button').prop('disabled', false);
     };
   });
 
@@ -23,7 +23,8 @@ $(() => {
     });
 
     $('#m').val('');
-    $('button').prop('disabled', true)
+    $('button').prop('disabled', true);
+
     return false;
   });
 
